@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	<flow name="getAccountDetailsFlow" doc:id="6e22075d-6331-4470-ba91-aed49d08d95d" >
+		<logger level="INFO" doc:name="Logger" doc:id="16458e63-ecdb-4d68-b8bd-36c1f679c4a0" message="recieved the request.......#[payload]"/>
+		<db:select doc:name="Select" doc:id="3ba82471-06e9-4ba6-bf4c-5d193d3eeddf" config-ref="Database_Config">
+			<db:sql ><![CDATA[select from Account where account_id=:accId;]]></db:sql>
+			<db:input-parameters ><![CDATA[#[{
+	accId:attributes.queryParams.accountid
+}]]]></db:input-parameters>
+		</db:select>
+		<logger level="INFO" doc:name="Logger" doc:id="791629c4-c527-4cf9-84ca-5674c03195ec" message="final response from data base............#[payload]"/>
+	</flow>
+</mule>

@@ -127,18 +127,7 @@ output application/json
         </error-handler>
     </flow>
     <flow name="get:\getAccountDetails:practiceFlights-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="
-http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{
-  statusCode: 201,
-  message: "Account Created Successfuly"
-}]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
+		<flow-ref doc:name="Flow Reference" doc:id="b2ef1928-d37e-4061-aa2c-957ea17e87a4" name="getAccountDetailsFlow"/>
     </flow>
     <flow name="post:\createAccount:application\json:practiceFlights-config">
 		<flow-ref doc:name="Flow Reference" doc:id="3e842bd1-2f8c-450e-9ea7-2f1596959061" name="createAccountFlow"/>
